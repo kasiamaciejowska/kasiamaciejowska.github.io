@@ -73,13 +73,14 @@
 
 
       <p class="form-status form-ok" id="formOk" role="status" hidden>Thank you — your message has been sent. I'll reply as soon as I can.</p>
-      <p class="form-status form-err" id="formErr" role="alert" hidden>Sorry, something went wrong. Please check your details and try again.</p>
-
       <div class="photo-row photo-left" id="formRow">
       <div class="photo-frame"><img src="../assets/img/contact.webp" width="800" height="1200" loading="lazy" decoding="async" alt="Portrait of Kasia"></div>
-      <form class="appointment-form box-cream" id="contactForm" action="../contact-send.php" method="post">
-        <input type="hidden" name="lang" value="en">
-        <div class="form-hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <form class="appointment-form box-cream" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="ef9ff950-cb4a-4d6e-b28e-b92ee443badb">
+        <input type="hidden" name="subject" value="New message from kasiamaciejowska.eu (en)">
+        <input type="hidden" name="from_name" value="Kasia Maciejowska website">
+        <input type="hidden" name="redirect" value="https://www.kasiamaciejowska.eu/en/contact.html?status=ok">
+        <div class="form-hp" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></div>
         <div class="form-row">
           <label for="cname">Name</label>
           <input type="text" id="cname" name="name" required maxlength="100" autocomplete="name">
@@ -96,6 +97,7 @@
           <input type="checkbox" id="cconsent" name="consent" value="1" required>
           <label for="cconsent">I agree that my details are used to reply to my message.</label>
         </div>
+        <div class="h-captcha" data-captcha="true"></div>
         <button type="submit" class="btn btn-call">Send message</button>
       </form>
       </div>
@@ -113,12 +115,11 @@
 
 <script src="../assets/vendor/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/nav.js"></script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <script>
 (function(){
   var q=new URLSearchParams(location.search), st=q.get('status');
   if(st==='ok'){document.getElementById('formOk').hidden=false;document.getElementById('formRow').hidden=true;}
-  else if(st==='error'){document.getElementById('formErr').hidden=false;}
-  var f=document.getElementById('contactForm'); if(f){var t=document.createElement('input');t.type='hidden';t.name='ts';t.value=Math.floor(Date.now()/1000);f.appendChild(t);}
 })();
 </script>
 </body>
