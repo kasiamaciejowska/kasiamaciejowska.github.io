@@ -592,3 +592,14 @@ body.menu-open{ overflow:hidden; }
 .content-box .testimonial-card{ text-align:left; }
 .content-box .testimonial-card .quote-attr{ margin-top:.6rem; font-weight:600; }
 .content-box .testimonial-card .quote{ margin-left:0; margin-right:0; padding-left:0; }
+
+/* testimonial slider: one at a time (falls back to a stacked list without JS) */
+.ts-controls{ display:none; }
+.testimonial-slider.is-enhanced .ts-viewport{ display:grid; }
+.testimonial-slider.is-enhanced .testimonial-card{ grid-area:1 / 1; visibility:hidden; opacity:0; transition:opacity .35s ease; margin-top:0 !important; padding-top:0 !important; border-top:0 !important; }
+.testimonial-slider.is-enhanced .testimonial-card.is-active{ visibility:visible; opacity:1; }
+.testimonial-slider.is-enhanced .ts-controls{ display:flex; align-items:center; justify-content:center; gap:1.2rem; margin-top:1.6rem; }
+.ts-btn{ width:44px; height:44px; border-radius:50%; border:1.5px solid var(--box-text); background:transparent; color:var(--box-text); font-size:1.5rem; line-height:1; display:inline-flex; align-items:center; justify-content:center; padding:0 0 .15rem; cursor:pointer; transition:background-color .2s, color .2s; }
+.ts-btn:hover, .ts-btn:focus-visible{ background:var(--box-text); color:var(--box-sage); }
+.ts-count{ color:var(--box-text); font-weight:600; min-width:3.5em; text-align:center; }
+@media (prefers-reduced-motion: reduce){ .testimonial-slider.is-enhanced .testimonial-card{ transition:none; } }
