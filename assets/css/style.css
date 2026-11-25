@@ -603,3 +603,11 @@ body.menu-open{ overflow:hidden; }
 .ts-btn:hover, .ts-btn:focus-visible{ background:var(--box-text); color:var(--box-sage); }
 .ts-count{ color:var(--box-text); font-weight:600; min-width:3.5em; text-align:center; }
 @media (prefers-reduced-motion: reduce){ .testimonial-slider.is-enhanced .testimonial-card{ transition:none; } }
+
+/* ---------- Privacy page ---------- */
+.legal{ text-align:left; }
+.legal h2{ font-size:1.05rem; font-weight:600; margin:1.4rem 0 .4rem; color:var(--box-text); }
+.legal p, .legal li{ font-size:.92rem; line-height:1.65; color:var(--box-text); }
+.legal ul{ padding-left:1.2rem; }
+.legal a{ color:var(--deep-green); text-decoration:underline; }
+.legal-upd{ font-size:.78rem; opacity:.75; }
