@@ -611,3 +611,5 @@ body.menu-open{ overflow:hidden; }
 .legal ul{ padding-left:1.2rem; }
 .legal a{ color:var(--deep-green); text-decoration:underline; }
 .legal-upd{ font-size:.78rem; opacity:.75; }
+
+.footer-fine a{ color:inherit; text-decoration:underline; }
