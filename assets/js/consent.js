@@ -1,21 +1,21 @@
-/* Cookie consent + Google Tag Manager loader.
-   GTM (GTM-MBCB6KVB) is only loaded after the visitor accepts.
+/* Cookie consent + Google Analytics 4 loader.
+   GA4 (G-MN1D67GV8D) is only loaded after the visitor accepts.
    The choice is kept in localStorage ("analytics-consent": "granted" | "denied"). */
 (function () {
-  var GTM_ID = 'GTM-MBCB6KVB';
+  var GA_ID = 'G-MN1D67GV8D';
   var KEY = 'analytics-consent';
 
   var T = {
     en: {
-      text: 'We use Google Analytics (via Google Tag Manager) to count visits. If you accept, cookies are set in your browser and anonymous usage data is sent to Google. The site works the same if you decline.',
+      text: 'We use Google Analytics to count visits. If you accept, cookies are set in your browser and anonymous usage data is sent to Google. The site works the same if you decline.',
       accept: 'Accept', decline: 'Decline', settings: 'Cookie settings', privacy: 'Privacy', more: 'More info', label: 'Cookie notice'
     },
     nl: {
-      text: 'Wij gebruiken Google Analytics (via Google Tag Manager) om bezoeken te tellen. Als u accepteert, worden cookies in uw browser geplaatst en worden anonieme gebruiksgegevens naar Google gestuurd. De site werkt hetzelfde als u weigert.',
+      text: 'Wij gebruiken Google Analytics om bezoeken te tellen. Als u accepteert, worden cookies in uw browser geplaatst en worden anonieme gebruiksgegevens naar Google gestuurd. De site werkt hetzelfde als u weigert.',
       accept: 'Accepteren', decline: 'Weigeren', settings: 'Cookie-instellingen', privacy: 'Privacy', more: 'Meer info', label: 'Cookiemelding'
     },
     pl: {
-      text: 'Używamy Google Analytics (przez Google Tag Manager) do liczenia odwiedzin. Jeśli się zgodzisz, w Twojej przeglądarce zostaną zapisane pliki cookie, a anonimowe dane o korzystaniu ze strony trafią do Google. Strona działa tak samo, jeśli odmówisz.',
+      text: 'Używamy Google Analytics do liczenia odwiedzin. Jeśli się zgodzisz, w Twojej przeglądarce zostaną zapisane pliki cookie, a anonimowe dane o korzystaniu ze strony trafią do Google. Strona działa tak samo, jeśli odmówisz.',
       accept: 'Akceptuję', decline: 'Odrzucam', settings: 'Ustawienia cookies', privacy: 'Prywatność', more: 'Więcej', label: 'Informacja o cookies'
     }
   };
@@ -27,16 +27,16 @@
   function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
 
-  function loadGTM() {
-    if (window.__gtmLoaded) return;
-    window.__gtmLoaded = true;
+  function loadGA() {
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag('js', new Date());
-    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    window.gtag('config', GA_ID);
     var s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
   }
 
@@ -97,7 +97,7 @@
     set(v);
     var b = document.getElementById('cc-banner');
     if (b) b.remove();
-    if (v === 'granted') loadGTM();
+    if (v === 'granted') loadGA();
     else if (was === 'granted') { clearGoogleCookies(); }
   }
 
@@ -120,11 +120,11 @@
     document.head.appendChild(st);
     addSettingsLink();
     var c = get();
-    if (c === 'granted') loadGTM();
+    if (c === 'granted') loadGA();
     else if (c !== 'denied') showBanner();
   }
 
-  if (get() === 'granted') loadGTM(); // load early, before DOM is ready
+  if (get() === 'granted') loadGA(); // load early, before DOM is ready
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
